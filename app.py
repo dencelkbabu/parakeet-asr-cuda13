@@ -437,10 +437,10 @@ if page == "Transcribe":
             
     # --- ADDED: Display Transcription History ---
     st.markdown("---")
-    st.markdown("### 🕒 Transcription History")
+    st.markdown("### 🕒 Session History")
 
     if not st.session_state.transcription_history:
-        st.caption("Your past transcriptions will appear here.")
+        st.caption("Transcriptions from this session will appear here. History resets when you close the app.")
     else:
         # Show history in reverse chronological order
         for i, entry in enumerate(reversed(st.session_state.transcription_history)):

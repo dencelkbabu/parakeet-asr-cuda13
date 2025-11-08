@@ -383,7 +383,7 @@ if page == "Transcribe":
                             "Transcription": st.column_config.TextColumn(width="large")
                         },
                         hide_index=True,
-                        use_container_width=True
+                        width='stretch'
                     )
                     
                     # Create export strings for different formats
@@ -399,7 +399,7 @@ if page == "Transcribe":
                             data=csv_string,
                             file_name=f"{os.path.splitext(uploaded_file.name)[0]}_transcript.csv",
                             mime="text/csv",
-                            use_container_width=True
+                            width='stretch'
                         )
                     
                     with col2:
@@ -408,7 +408,7 @@ if page == "Transcribe":
                             data=text_string,
                             file_name=f"{os.path.splitext(uploaded_file.name)[0]}_transcript.txt",
                             mime="text/plain",
-                            use_container_width=True
+                            width='stretch'
                         )
                         
                     with col3:
@@ -417,7 +417,7 @@ if page == "Transcribe":
                             data=srt_string,
                             file_name=f"{os.path.splitext(uploaded_file.name)[0]}_subtitle.srt",
                             mime="text/plain",
-                            use_container_width=True
+                            width='stretch'
                         )
                     
                     # Word count analysis
@@ -449,7 +449,7 @@ if page == "Transcribe":
                 st.dataframe(
                     df, 
                     hide_index=True, 
-                    use_container_width=True,
+                    width='stretch',
                     column_config={
                         "From (s)": st.column_config.NumberColumn(format="%.2f", width="small"),
                         "To (s)": st.column_config.NumberColumn(format="%.2f", width="small"),
@@ -465,9 +465,9 @@ if page == "Transcribe":
                 hist_name = os.path.splitext(entry['filename'])[0]
 
                 c1, c2, c3 = st.columns(3)
-                c1.download_button("📄 Download CSV", data=csv_hist, file_name=f"{hist_name}_transcript.csv", mime="text/csv", use_container_width=True, key=f"csv_{i}")
-                c2.download_button("📝 Download Text", data=txt_hist, file_name=f"{hist_name}_transcript.txt", mime="text/plain", use_container_width=True, key=f"txt_{i}")
-                c3.download_button("🎬 Download SRT", data=srt_hist, file_name=f"{hist_name}_subtitle.srt", mime="text/plain", use_container_width=True, key=f"srt_{i}")
+                c1.download_button("📄 Download CSV", data=csv_hist, file_name=f"{hist_name}_transcript.csv", mime="text/csv", width='stretch', key=f"csv_{i}")
+                c2.download_button("📝 Download Text", data=txt_hist, file_name=f"{hist_name}_transcript.txt", mime="text/plain", width='stretch', key=f"txt_{i}")
+                c3.download_button("🎬 Download SRT", data=srt_hist, file_name=f"{hist_name}_subtitle.srt", mime="text/plain", width='stretch', key=f"srt_{i}")
 
 elif page == "About":
     st.title("About this Application")

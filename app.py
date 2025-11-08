@@ -222,32 +222,7 @@ def transcribe_audio(audio_path, show_progress=True):
         try:
             if show_progress:
                 with st.spinner("Transcribing audio... This may take a while for longer files."):
-                    progress_bar = st.progress(0)
-                    
-                    # Create a progress indicator that updates based on estimated time
-                    # This is an estimation since we can't track actual progress
-                    estimated_total_time = duration_sec * 0.5  # Rough estimate: processing takes ~50% of audio duration
-                    
-                    def update_progress():
-                        for i in range(1, 101):
-                            elapsed = time.time() - start_time
-                            if elapsed >= estimated_total_time:
-                                break
-                            progress = min(elapsed / estimated_total_time, 0.95)  # Max at 95% until completion
-                            progress_bar.progress(progress)
-                            time.sleep(estimated_total_time / 100)
-                    
-                    # Start progress update in separate thread
-                    import threading
-                    progress_thread = threading.Thread(target=update_progress)
-                    progress_thread.daemon = True
-                    progress_thread.start()
-                    
-                    # Actual transcription
                     output = model.transcribe([processed_path], timestamps=True)
-                    
-                    # Complete progress
-                    progress_bar.progress(1.0)
             else:
                 output = model.transcribe([processed_path], timestamps=True)
             

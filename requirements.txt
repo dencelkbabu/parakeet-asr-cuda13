@@ -1,16 +1,32 @@
+# -------------------------------------------------------------------------
+# CRITICAL: DO NOT ADD TORCH OR TORCHAUDIO TO THIS FILE.
+# You must install them manually *before* running this file, using
+# the command specific to your Python (3.11) and CUDA (13.0) version:
+#
+# pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu130
+# -------------------------------------------------------------------------
+#
+# NOTE: This environment also requires the FFMPEG binary for audio processing.
+#
+# On Windows:
+#   1. Download the FFmpeg binary from https://ffmpeg.org/download.html
+#   2. Unzip the file (e.g., to C:\ffmpeg)
+#   3. Add the 'bin' folder (e.g., C:\ffmpeg\bin) to your system's PATH.
+#
+# On Debian/Ubuntu:
+#   apt-get update && apt-get install -y ffmpeg
+#
+# On Conda:
+#   conda install ffmpeg -c conda-forge
+
 streamlit>=1.32.0
-torch>=2.0.0
-torchaudio>=2.0.0
 numpy>=1.20.0
 pandas>=1.3.0
 matplotlib>=3.4.0
-git+https://github.com/NVIDIA/NeMo.git@main
+nemo-toolkit[asr]>=1.23.0 # Switched from Git to stable PyPI package
 soundfile>=0.12.1
 transformers>=4.51.3
 sentencepiece>=0.2.0
-jiwer>=3.0.3
-pyannote.core>=3.1.1
-pyannote.metrics>=3.1.1
 librosa>=0.9.0
 omegaconf>=2.1.1
 pyparsing>=3.0.7
@@ -21,9 +37,14 @@ unidecode>=1.3.4
 webdataset>=0.2.20
 wget>=3.2
 hydra-core>=1.1.0
-sacrebleu>=2.0.0
-datasets>=2.18.0
-editdistance==0.8.1
 ipython>=8.0.0
 pydub>=0.25.1
 ffmpeg-python>=0.2.0
+
+# --- Dependencies to install manually after the steps above ---
+#
+# Required by librosa for audio processing. Install with:
+# pip install msgpack
+#
+# Optional: For NeMo's CUDA graphs optimization. Install with:
+# pip install cuda-python>=12.3

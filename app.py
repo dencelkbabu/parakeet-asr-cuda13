@@ -97,7 +97,7 @@ st.markdown("""
 # Constants
 MODEL_NAME = "nvidia/parakeet-tdt-0.6b-v3"
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
-SUPPORTED_FORMATS = ['wav', 'flac']
+SUPPORTED_FORMATS = ['wav', 'flac', 'mp3', 'm4a', 'ogg', 'opus'] # added more common audio formats
 MAX_RECOMMENDED_DURATION = 30 * 60  # 30 minutes in seconds
 LONG_AUDIO_THRESHOLD = 480  # 8 minutes in seconds
 
@@ -365,7 +365,7 @@ if page == "Transcribe":
 
     with col1:
         # File uploader with expanded format support
-        uploaded_file = st.file_uploader(f"Upload an audio file (WAV or FLAC)", 
+        uploaded_file = st.file_uploader(f"Upload an audio file (WAV, FLAC, MP3, M4A, OGG, etc.)", 
                                         type=SUPPORTED_FORMATS)
 
     with col2:

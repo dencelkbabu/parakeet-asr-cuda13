@@ -323,7 +323,7 @@ def export_to_formats(csv_data):
     csv_string = "\n".join([",".join([f'"{cell}"' if ',' in cell else cell for cell in row]) for row in csv_data])
     
     # For plain text (just the transcription)
-    text_string = "\n\n".join([row[5] for row in csv_data[1:]])
+    text_string = " ".join([row[5] for row in csv_data[1:]])
     
     # For SRT (subtitle format)
     srt_string = ""

@@ -193,7 +193,8 @@ def process_audio(audio_path):
 
 def format_time(seconds):
     """Convert seconds to HH:MM:SS format."""
-    return str(datetime.timedelta(seconds=seconds)).split('.')[0]
+    # Round to nearest second for cleaner display in history
+    return str(datetime.timedelta(seconds=round(seconds))).split('.')[0]
 
 def transcribe_audio(audio_path, show_progress=True):
     """Transcribe audio file using the model with detailed progress reporting."""
@@ -458,6 +459,40 @@ if page == "Transcribe":
             # Cleanup
             if os.path.exists(audio_path):
                 os.remove(audio_path)
+            
+    # --- ADDED: Display Transcription History ---
+    st.markdown("---")
+    st.markdown("### 🕒 Transcription History")
+
+    if not st.session_state.transcription_history:
+        st.caption("Your past transcriptions will appear here.")
+    else:
+        # Show history in reverse chronological order
+        for i, entry in enumerate(reversed(st.session_state.transcription_history)):
+            with st.expander(f"**{entry['timestamp']}** | {entry['filename']} ({format_time(entry['duration'])})"):
+                df = pd.DataFrame(entry['csv_data'][1:], columns=entry['csv_data'][0])
+                st.dataframe(
+                    df, 
+                    hide_index=True, 
+                    use_container_width=True,
+                    column_config={
+                        "From (s)": st.column_config.NumberColumn(format="%.2f", width="small"),
+                        "To (s)": st.column_config.NumberColumn(format="%.2f", width="small"),
+                        "From (time)": st.column_config.TextColumn(width="small"),
+                        "To (time)": st.column_config.TextColumn(width="small"),
+                        "Duration": st.column_config.NumberColumn(format="%.2f", width="small"),
+                        "Transcription": st.column_config.TextColumn(width="large")
+                    }
+                )
+
+                # Add download buttons for history items
+                csv_hist, txt_hist, srt_hist = export_to_formats(entry['csv_data'])
+                hist_name = os.path.splitext(entry['filename'])[0]
+
+                c1, c2, c3 = st.columns(3)
+                c1.download_button("📄 Download CSV", data=csv_hist, file_name=f"{hist_name}_transcript.csv", mime="text/csv", use_container_width=True, key=f"csv_{i}")
+                c2.download_button("📝 Download Text", data=txt_hist, file_name=f"{hist_name}_transcript.txt", mime="text/plain", use_container_width=True, key=f"txt_{i}")
+                c3.download_button("🎬 Download SRT", data=srt_hist, file_name=f"{hist_name}_subtitle.srt", mime="text/plain", use_container_width=True, key=f"srt_{i}")
 
 elif page == "About":
     st.title("About this Application")

@@ -130,8 +130,10 @@ def load_model():
             
             # Use mixed precision for better performance when using GPU
             if DEVICE == "cuda":
-                model = model.to(torch.bfloat16)
-                
+                # model = model.to(torch.bfloat16) # <-- DISABLED 
+                # fix for: "Error during transcription: mat1 and mat2 must have the same dtype, but got BFloat16 and Float"
+                pass
+            
             custom_success(f"Model loaded successfully on {DEVICE.upper()}!")
             return model
     except Exception as e:

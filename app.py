@@ -95,7 +95,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Constants
-MODEL_NAME = "nvidia/parakeet-tdt-0.6b-v2"
+MODEL_NAME = "nvidia/parakeet-tdt-0.6b-v3"
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 SUPPORTED_FORMATS = ['wav', 'flac']
 MAX_RECOMMENDED_DURATION = 30 * 60  # 30 minutes in seconds
@@ -348,7 +348,7 @@ with st.sidebar:
 if page == "Transcribe":
     # Description
     st.markdown("""
-    This demo showcases [parakeet-tdt-0.6b-v2](https://huggingface.co/nvidia/parakeet-tdt-0.6b-v2), a 600-million-parameter model designed for high-quality English speech recognition.
+    This demo showcases [parakeet-tdt-0.6b-v3](https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3), a 600-million-parameter model designed for high-quality English speech recognition.
 
     **Key Features:**
     - Automatic punctuation and capitalization
@@ -467,7 +467,7 @@ elif page == "About":
     
     ### Model Details
     
-    - **Model**: [nvidia/parakeet-tdt-0.6b-v2](https://huggingface.co/nvidia/parakeet-tdt-0.6b-v2)
+    - **Model**: [nvidia/parakeet-tdt-0.6b-v3](https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3)
     - **Parameters**: 600 million
     - **Features**: Automatic punctuation, capitalization, and word-level timestamps
     - **Language**: English

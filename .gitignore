@@ -1,0 +1,2 @@
+Ignore the local environment directory and all its contents
+.venv/

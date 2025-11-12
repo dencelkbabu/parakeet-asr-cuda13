@@ -1,9 +1,9 @@
 # -------------------------------------------------------------------------
 # CRITICAL: DO NOT ADD TORCH OR TORCHAUDIO TO THIS FILE.
 # You must install them manually *before* running this file, using
-# the command specific to your Python (3.11) and CUDA (13.0) version:
+# the command specific to your Python (3.11) and CUDA (12.1) version:
 #
-# pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu130
+# pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 # -------------------------------------------------------------------------
 #
 # NOTE: This environment also requires the FFMPEG binary for audio processing.

@@ -14,7 +14,7 @@ Speech recognition using NVIDIA's Parakeet TDT model.
 ## Requirements
 
 - **Python 3.11** (This is **critical**. Do not use Python 3.12+ as PyTorch/NeMo dependencies may fail.)
-- **NVIDIA GPU with CUDA** (Strongly recommended). This guide assumes **CUDA 13.0**.
+- **NVIDIA GPU with CUDA** (Strongly recommended). This guide assumes **CUDA 12.1**.
 - **FFmpeg** (Must be installed on the system and added to the PATH).
 
 ## 🚀 Setup (Critical Steps)
@@ -39,10 +39,10 @@ py -3.11 -m venv .venv
 
 ### 2. Manually Install PyTorch
 
-You must install PyTorch and its components before installing the other requirements. This command installs the version built for CUDA 13.0.
+You must install PyTorch and its components before installing the other requirements. This command installs the version built for CUDA 12.1.
 
 ```pwsh
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu130
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 ```
 
 ### 3. Install App Requirements
